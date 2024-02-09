@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:xenon_app/pages/login_page.dart';
 import 'pages/intro_page.dart';
+import 'pages/login_page.dart';
 import 'models/cart.dart';
 
 void main() {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       create: (context) => Cart(),
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: IntroPage(),
+        home: LoginPage(),
       ),
     ); // MaterialApp
   }
