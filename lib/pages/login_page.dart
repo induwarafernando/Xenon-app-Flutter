@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:xenon_app/components/my_button.dart';
 import 'package:xenon_app/components/my_textfield.dart';
+import 'package:xenon_app/components/square_tile.dart';
 import 'package:xenon_app/pages/home_page.dart';
 import 'package:xenon_app/main.dart';
 
@@ -84,38 +85,50 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 50),
               //or continue with
-              
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
-                 children:[
-                  Expanded(
-                   child: Divider(
-                   color: Colors.grey[400],
-                   thickness: 0.5,
-                 ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'or continue with',
-                    style: TextStyle(color: Colors.grey[700]),
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        color: Colors.grey[400],
+                        thickness: 0.5,
+                      ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'or continue with',
+                        style: TextStyle(color: Colors.grey[700]),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        color: Colors.grey[400],
+                        thickness: 0.5,
+                      ),
+                    ),
+                  ],
                 ),
-                Expanded(
-                   child: Divider(
-                   color: Colors.grey[400],
-                   thickness: 0.5,
-                  ),
-                 ),
-                ],
               ),
-            ),
-              //google button and apple button
-              Row(children: [Widget
-              ],)
-              //not a member? register now
 
+              const SizedBox(height: 25),
+              //google button and apple button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //google button
+                  SquareTile(imagePath: 'lib/images/google.png'),
+
+                  const SizedBox(width: 25),
+                  //apple button
+                  SquareTile(imagePath: 'lib/images/apple.png'),
+                ],
+              )
+            ],
+            //not a member? register now
+          ),
         ),
       ),
     );
