@@ -16,7 +16,7 @@ class ProductDetails extends StatelessWidget {
             top: 0,
             child: Container(
               alignment: Alignment.topCenter,
-              height: size.height - 300,
+              height: size.height / 2.2,
               width: size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(
