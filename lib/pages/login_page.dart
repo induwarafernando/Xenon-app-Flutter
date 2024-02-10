@@ -1,22 +1,23 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:xenon_app/components/my_button.dart';
 import 'package:xenon_app/components/my_textfield.dart';
 import 'package:xenon_app/components/square_tile.dart';
 import 'package:xenon_app/pages/home_page.dart';
-import 'package:xenon_app/main.dart';
+import 'package:xenon_app/pages/register_page.dart';
 
 //Login Page stateless widget
+
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  //text editing controllers
+  // text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  //sign user in method
-  void signInUser() {}
+  // sign user in method
+  //sign in button to direct to home_page
+  void signUserIn() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,34 +25,39 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 50),
-              //logo
-              Icon(
+
+              // logo
+              const Icon(
                 Icons.lock,
                 size: 100,
               ),
-              //welcome back, you've been missed
+
+              const SizedBox(height: 50),
+
+              // welcome back, you've been missed!
               Text(
-                'Welcome back, you\'ve been missed',
+                'Welcome back you\'ve been missed!',
                 style: TextStyle(
-                  fontSize: 16,
                   color: Colors.grey[700],
-                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
               ),
 
               const SizedBox(height: 25),
-              //username input
+
+              // username textfield
               MyTextField(
                 controller: usernameController,
                 hintText: 'Username',
                 obscureText: false,
               ),
 
-              const SizedBox(height: 25),
+              const SizedBox(height: 10),
 
-              //password input
+              // password textfield
               MyTextField(
                 controller: passwordController,
                 hintText: 'Password',
@@ -59,7 +65,8 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 10),
-              //fogot password?
+
+              // forgot password?
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
@@ -67,10 +74,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Text(
                       'Forgot Password?',
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: TextStyle(color: Colors.grey[600]),
                     ),
                   ],
                 ),
@@ -78,56 +82,93 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              //sign in button
+              // sign in button
+
               MyButton(
-                onTap: signInUser,
+                onTap: signUserIn,
               ),
 
-              const SizedBox(height: 50),
-              //or continue with
+              const SizedBox(height: 10),
 
+              // or continue with
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
                   children: [
                     Expanded(
                       child: Divider(
-                        color: Colors.grey[400],
                         thickness: 0.5,
+                        color: Colors.grey[400],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(
-                        'or continue with',
+                        'Or continue with',
                         style: TextStyle(color: Colors.grey[700]),
                       ),
                     ),
                     Expanded(
                       child: Divider(
-                        color: Colors.grey[400],
                         thickness: 0.5,
+                        color: Colors.grey[400],
                       ),
                     ),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 25),
-              //google button and apple button
+              const SizedBox(height: 10),
+
+              // google + apple sign in buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  // google button
+                  SquareTile(
+                      imagePath: 'lib/images/google.png',
+                      height: 40,
+                      width: 40),
+
+                  SizedBox(width: 25),
+
+                  // apple button
+                  SquareTile(
+                      imagePath: 'lib/images/Apple.png', height: 40, width: 40)
+                ],
+              ),
+
+              const SizedBox(height: 10),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  //google button
-                  SquareTile(imagePath: 'lib/images/google.png'),
-
-                  const SizedBox(width: 25),
-                  //apple button
-                  SquareTile(imagePath: 'lib/images/apple.png'),
+                  Text(
+                    'Not a member?',
+                    style: TextStyle(color: Colors.grey[700]),
+                  ),
+                  const SizedBox(width: 4),
+                  // "Register now" text with onTap handler to navigate to register page
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                RegisterPage()), // Navigate to register page
+                      );
+                    },
+                    child: Text(
+                      'Register now',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ],
-              )
+              ),
             ],
-            //not a member? register now
           ),
         ),
       ),
