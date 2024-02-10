@@ -5,6 +5,8 @@ class SquareTile extends StatelessWidget {
   const SquareTile({
     super.key,
     required this.imagePath,
+    required int height,
+    required int width,
   });
 
   @override
@@ -18,7 +20,7 @@ class SquareTile extends StatelessWidget {
       ),
       child: Image.asset(
         imagePath,
-        height: 40,
+        height: 35,
       ),
     );
   }
