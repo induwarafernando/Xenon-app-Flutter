@@ -35,7 +35,8 @@ class ProductDetails extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: AppColor.primary,
                     borderRadius: BorderRadius.circular(11)),
-                child: Image.asset('assets/images/Bag.png'),
+                child: Image.asset(
+                    'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'),
               )),
           Positioned(
             top: 150,
