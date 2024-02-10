@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:xenon_app/pages/login_page.dart';
 import 'package:xenon_app/pages/register_page.dart';
-import 'package:login_signup/theme/theme.dart';
-import 'package:login_signup/widgets/custom_scaffold.dart';
-import 'package:login_signup/widgets/welcome_button.dart';
+import 'package:xenon_app/components/welcome_button.dart';
+import 'package:xenon_app/components/custom_scaffold.dart';
+import 'package:xenon_app/components/theme.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -49,10 +49,10 @@ class WelcomeScreen extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: WelcomeButton(
                       buttonText: 'Sign in',
-                      onTap: SignInScreen(),
+                      onTap: LoginPage(),
                       color: Colors.transparent,
                       textColor: Colors.white,
                     ),
@@ -60,7 +60,7 @@ class WelcomeScreen extends StatelessWidget {
                   Expanded(
                     child: WelcomeButton(
                       buttonText: 'Sign up',
-                      onTap: const SignUpScreen(),
+                      onTap: RegisterPage(),
                       color: Colors.white,
                       textColor: lightColorScheme.primary,
                     ),
