@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xenon_app/pages/home_page.dart';
 
 class MyButton extends StatelessWidget {
   final Function()? onTap;
@@ -8,9 +9,15 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      },
       child: Container(
-        padding: const EdgeInsets.all(25),
+        height: 65.0,
+        padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 3, 65, 132),
@@ -21,7 +28,7 @@ class MyButton extends StatelessWidget {
             'Sign In',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 16,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
