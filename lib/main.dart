@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xenon_app/pages/home_page.dart';
 import 'package:xenon_app/pages/login_page.dart';
+import 'package:xenon_app/pages/product_detail.dart';
 import 'package:xenon_app/pages/register_page.dart';
 import 'package:xenon_app/pages/welcome_screen.dart';
 import 'pages/intro_page.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       create: (context) => Cart(),
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: WelcomeScreen(),
+        home: ProductDetails(),
       ),
     ); // MaterialApp
   }
