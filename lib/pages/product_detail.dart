@@ -57,7 +57,8 @@ class ProductDetails extends StatelessWidget {
                       border: Border.all(color: AppColor.primary, width: 2),
                       image: const DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/images/Image_3.png'))),
+                          image: AssetImage(
+                              'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'))),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 6),
@@ -67,7 +68,8 @@ class ProductDetails extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       image: const DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/images/Image_4.png'))),
+                          image: AssetImage(
+                              'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'))),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 6),
@@ -77,7 +79,8 @@ class ProductDetails extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       image: const DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/images/Image_1.png'))),
+                          image: AssetImage(
+                              'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'))),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 6),
@@ -87,7 +90,8 @@ class ProductDetails extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       image: const DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/images/Image_2.png'))),
+                          image: AssetImage(
+                              'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'))),
                 ),
               ]),
             ),
