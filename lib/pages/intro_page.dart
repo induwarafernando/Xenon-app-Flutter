@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xenon_app/pages/home_page.dart';
+import 'package:xenon_app/pages/login_page.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class IntroPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
                 child: Container(
