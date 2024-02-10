@@ -21,7 +21,7 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 216, 214, 214),
+      backgroundColor: Color.fromARGB(255, 139, 149, 163),
       body: SafeArea(
         child: Center(
           child: Column(
