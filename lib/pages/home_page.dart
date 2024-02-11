@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:xenon_app/pages/ProfileScreen.dart';
+import 'package:xenon_app/pages/order_activity_screen.dart';
 import 'package:xenon_app/pages/order_screen.dart';
 import '../components/bottom_nav_bar.dart';
 import 'cart_page.dart';
 import 'shop_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-//this selected index is to control the bottom nav bar
   int _selectedIndex = 0;
-
-//this method is to change the selected index
-//when the user taps on the bottom nav bar
 
   void navigateBottomNavBar(int index) {
     setState(() {
@@ -25,9 +21,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-//pages to be displayed when the user taps on the bottom nav bar
-  List<Widget> get _pages =>
-      [const ShopPage(), const CartPage(), ProfileScreen(), OrderScreen()];
+  List<Widget> get _pages => [
+        const ShopPage(),
+        const CartPage(),
+        OrderActivityScreen(), // Change order number as needed
+        OrderScreen()
+      ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +48,27 @@ class _HomePageState extends State<HomePage> {
             color: Colors.black,
           ),
         ),
+        title: Row(
+          children: [
+            SizedBox(width: 8), // Adjust spacing between logo and text
+            Text(
+              'XENON',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w600 // Adjust font size as needed
+                  ),
+            ),
+            SizedBox(width: 4), // Adjust spacing between text and slogan
+            Text(
+              ': Your Style, Your Stores, We Deliver',
+              style: TextStyle(
+                color: Colors.grey[700],
+                fontSize: 18, // Adjust font size as needed
+              ),
+            ),
+          ],
+        ),
       ),
       drawer: Drawer(
         backgroundColor: Colors.grey[900],
@@ -57,23 +77,19 @@ class _HomePageState extends State<HomePage> {
           children: [
             Column(
               children: [
-                //logo
                 DrawerHeader(
                   child: Image.asset(
                     'lib/imagesnike/logo.png',
                     color: Colors.white,
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Divider(
                     color: Colors.grey[800],
                   ),
                 ),
-
-                //other pages
-                const Padding(
+                Padding(
                   padding: const EdgeInsets.only(left: 25.0),
                   child: ListTile(
                     leading: Icon(
@@ -86,8 +102,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-
-                const Padding(
+                Padding(
                   padding: const EdgeInsets.only(left: 25.0),
                   child: ListTile(
                     leading: Icon(
@@ -102,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            const Padding(
+            Padding(
               padding: const EdgeInsets.only(left: 25.0, bottom: 25.0),
               child: ListTile(
                 leading: Icon(

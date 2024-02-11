@@ -4,29 +4,29 @@ import 'package:flutter/foundation.dart';
 class Cart extends ChangeNotifier {
   List<Shoe> shoeShop = [
     Shoe(
-      name: "Long Sleeved Denim",
-      price: "12",
+      name: "Denim Jacket",
+      price: "20",
       //catchy phrase
-      description: 'Best Denim Style Ever',
+      description: '\"Best Denim Style Ever Seen\"',
       imagePath: 'lib/images/pd2.jpeg',
     ),
     Shoe(
       name: "Long Sleeved Shirt",
       price: "16",
-      description: "Casual and Comfortable",
+      description: "\"Casual and Comfortable\"",
       imagePath: 'lib/images/pd4.png',
     ),
     Shoe(
       name: "Party Dress",
       price: "29",
-      description: "Elevate Your Game",
+      description: "\"Elegant and Stylish for Parties\"",
       imagePath: 'lib/images/pd5.png',
     ),
     Shoe(
-      name: "Air Jordan",
-      price: "220",
-      description: "Forward-Thinking Utility",
-      imagePath: 'lib/imagesnike/pexels-aman-jakhar-1124466.jpg',
+      name: "Side Bag",
+      price: "22",
+      description: "\"Richest Leather Quality for Bags\"",
+      imagePath: 'lib/images/pd6.jpeg',
     ),
   ];
 

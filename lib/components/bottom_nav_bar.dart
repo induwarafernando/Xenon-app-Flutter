@@ -33,8 +33,8 @@ class MyBottomNavBar extends StatelessWidget {
           ),
           GButton(
             iconSize: 24,
-            icon: Icons.person,
-            text: 'Profile',
+            icon: Icons.local_activity_rounded,
+            text: 'Orders',
             textStyle: TextStyle(fontSize: 12),
           ),
           GButton(
