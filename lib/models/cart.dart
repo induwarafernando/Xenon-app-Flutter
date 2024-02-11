@@ -1,5 +1,4 @@
 import 'shoe.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 
 class Cart extends ChangeNotifier {

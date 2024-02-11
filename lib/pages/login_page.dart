@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:xenon_app/components/my_button.dart';
 import 'package:xenon_app/components/my_textfield.dart';
 import 'package:xenon_app/components/square_tile.dart';
-import 'package:xenon_app/pages/home_page.dart';
 import 'package:xenon_app/pages/register_page.dart';
 
 //Login Page stateless widget

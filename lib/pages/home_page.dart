@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:xenon_app/pages/ProfileScreen.dart';
+import 'package:xenon_app/pages/order_screen.dart';
 import '../components/bottom_nav_bar.dart';
 import 'cart_page.dart';
 import 'shop_page.dart';
@@ -24,10 +26,8 @@ class _HomePageState extends State<HomePage> {
   }
 
 //pages to be displayed when the user taps on the bottom nav bar
-  List<Widget> get _pages => [
-        const ShopPage(),
-        const CartPage(),
-      ];
+  List<Widget> get _pages =>
+      [const ShopPage(), const CartPage(), ProfileScreen(), OrderScreen()];
 
   @override
   Widget build(BuildContext context) {

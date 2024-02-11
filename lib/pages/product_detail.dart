@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:xenon_app/product_detail/color.dart';
 import 'package:xenon_app/product_detail/style.dart';
 
@@ -103,7 +102,9 @@ class ProductDetails extends StatelessWidget {
                 width: size.width,
                 decoration: BoxDecoration(
                   color: AppColor.secondary,
-                  borderRadius: BorderRadius.circular(34),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(32),
+                      topRight: Radius.circular(32)),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),

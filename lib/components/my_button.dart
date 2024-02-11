@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xenon_app/pages/home_page.dart';
+import 'package:xenon_app/pages/intro_page.dart';
 
 class MyButton extends StatelessWidget {
   final Function()? onTap;
@@ -12,7 +12,7 @@ class MyButton extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => IntroPage()),
         );
       },
       child: Container(

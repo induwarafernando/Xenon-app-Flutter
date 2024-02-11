@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:xenon_app/pages/product_detail.dart';
 import '../models/shoe.dart';
 
 class ShoeTile extends StatelessWidget {
@@ -31,11 +32,21 @@ class ShoeTile extends StatelessWidget {
             ),
 
             //description
-            Text(
-              shoe.description,
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 20,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          ProductDetails()), // Navigate to register page
+                );
+              },
+              child: Text(
+                shoe.description,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 20,
+                ),
               ),
             ),
 
