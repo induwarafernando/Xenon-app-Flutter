@@ -16,7 +16,7 @@ class WelcomeScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: EdgeInsets.only(left: 10.0, top: 488.0),
+              padding: EdgeInsets.only(left: 10.0, top: 468.0),
               child: Text(
                 'Hi! Welcome Back!',
                 style: TextStyle(
@@ -30,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: EdgeInsets.only(left: 10.0, top: 11.0),
+              padding: EdgeInsets.only(left: 10.0, top: 1.0),
               child: Text(
                 'Your Closet\'s Best Friend  XENON, Your Ultimate Delivery Partner.',
                 style: TextStyle(
