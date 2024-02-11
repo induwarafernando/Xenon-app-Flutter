@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:xenon_app/pages/live_order_screen.dart';
 import 'package:xenon_app/pages/order_activity_screen.dart';
-import 'package:xenon_app/pages/order_screen.dart';
 import '../components/bottom_nav_bar.dart';
 import 'cart_page.dart';
 import 'shop_page.dart';
@@ -24,8 +24,8 @@ class _HomePageState extends State<HomePage> {
   List<Widget> get _pages => [
         const ShopPage(),
         const CartPage(),
-        OrderActivityScreen(), // Change order number as needed
-        OrderScreen()
+        const OrderActivityScreen(),
+        LiveOrderScreen()
       ];
 
   @override
