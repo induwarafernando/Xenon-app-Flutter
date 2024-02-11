@@ -5,22 +5,22 @@ class Cart extends ChangeNotifier {
   List<Shoe> shoeShop = [
     Shoe(
       name: "Long Sleeved Denim",
-      price: "10",
+      price: "12",
       //catchy phrase
       description: 'Best Denim Style Ever',
       imagePath: 'lib/images/pd2.jpeg',
     ),
     Shoe(
-      name: "Check Shirt",
-      price: "190",
-      description: "Stay fresh",
-      imagePath: 'lib/images/pd4.jpg',
+      name: "Long Sleeved Shirt",
+      price: "16",
+      description: "Casual and Comfortable",
+      imagePath: 'lib/images/pd4.png',
     ),
     Shoe(
-      name: "Nike Air Max",
-      price: "200",
-      description: "Lightest Ever",
-      imagePath: 'lib/imagesnike/pexels-ray-piedra-1464624.jpg',
+      name: "Party Dress",
+      price: "29",
+      description: "Elevate Your Game",
+      imagePath: 'lib/images/pd5.png',
     ),
     Shoe(
       name: "Air Jordan",
