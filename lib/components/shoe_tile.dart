@@ -97,6 +97,8 @@ class ShoeTile extends StatelessWidget {
                     ),
                   ),
                 ],
+
+                //add to cart
               ),
             ),
           ],
