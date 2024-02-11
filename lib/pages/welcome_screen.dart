@@ -16,11 +16,11 @@ class WelcomeScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: EdgeInsets.only(left: 10.0, top: 490.0),
+              padding: EdgeInsets.only(left: 10.0, top: 488.0),
               child: Text(
                 'Hi! Welcome Back!',
                 style: TextStyle(
-                  fontSize: 40.0,
+                  fontSize: 45.0,
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
                 ),
@@ -30,12 +30,12 @@ class WelcomeScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: EdgeInsets.only(left: 10.0, top: 4.0),
+              padding: EdgeInsets.only(left: 10.0, top: 11.0),
               child: Text(
                 'Your Closet\'s Best Friend  XENON, Your Ultimate Delivery Partner.',
                 style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.white,
+                  fontSize: 18.0,
+                  color: Colors.blueGrey[100],
                   fontWeight: FontWeight.w600,
                 ),
               ),

@@ -22,13 +22,13 @@ class MyTextField extends StatelessWidget {
         style: TextStyle(fontSize: 14.0),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
-              vertical: 10.0, horizontal: 10), // Adjust vertical padding
+              vertical: 12.0, horizontal: 10), // Adjust vertical padding
 
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color.fromARGB(255, 1, 46, 105)),
+            borderSide: BorderSide(color: Color.fromARGB(255, 59, 133, 230)),
           ),
           fillColor: Colors.grey.shade200,
           filled: true,

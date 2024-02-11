@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+import 'package:timeline_tile/timeline_tile.dart';
+
+
+class MyTimeLineTile extends StatelessWidget{
+  final bool isFirst;
+  final bool isLast;
+  final bool isPast;
+  const MyTimeLineTile({super.key, required this.isFirst, required this.isLast,  this.isPast});
+
+  @override
+  Widget build(BuildContext context){
+    return SizedBox(
+      height: 100,
+      child: TimelineTile(
+        //start timeline
+        isFirst: isFirst,
+        isLast: isLast,
+        //decorate the  lines
+        beforeLineStyle: LineStyle(
+          color: isPast ? Colors.deepPurple : Colors.deepPurple.shade100,
+        ),
+        //decorate the  icon
+        indicatorStyle: IndicatorStyle(
+          width: 40,
+          color: isPast ? Colors.deepPurple : Colors.deepPurple.shade100,
+          iconStyle: IconStyle(
+            color: isPast ? Colors.white : Colors.deepPurple.shade100,
+            iconData: Icons.done,
+          ),
+        ),
+        //event Card
+        endChild: Card(
+          margin: EdgeInsets.symmetric(horizontal: 25),
+          elevation: 5,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Order Placed',
+              style: TextStyle(
+                color: isPast ? Colors.deepPurple : Colors.deepPurple.shade100,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+
+      ),
+    );
+  }
+}
+
+    
+  

@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 188, 195, 203),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -28,20 +28,22 @@ class LoginPage extends StatelessWidget {
             children: [
               const SizedBox(height: 50),
 
-              // logo
-              const Icon(
-                Icons.lock,
-                size: 100,
+              // logo IMAGE
+              Image.asset(
+                'lib/images/LogoX2.png',
+                height: 70,
+                width: 500,
               ),
 
               const SizedBox(height: 50),
 
               // welcome back, you've been missed!
               Text(
-                'Welcome back you\'ve been missed!',
+                'Your Styles, Your Stores, We Deliver!',
                 style: TextStyle(
-                  color: Colors.grey[700],
-                  fontSize: 16,
+                  color: Color.fromARGB(255, 2, 35, 105),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
 

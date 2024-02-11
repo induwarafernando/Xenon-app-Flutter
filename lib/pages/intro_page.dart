@@ -7,7 +7,7 @@ class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 242, 243, 244),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -18,15 +18,15 @@ class IntroPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Image.asset(
-                  'lib/imagesnike/logo.png',
-                  width: 200,
-                  height: 200,
+                  'lib/images/LogoX.png',
+                  width: 300,
+                  height: 150,
                 ),
               ),
-              const SizedBox(height: 28),
+              const SizedBox(height: 1),
               //title
               const Text(
-                'Just Do It',
+                'Your Closet\'s Best Friend',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -34,14 +34,14 @@ class IntroPage extends StatelessWidget {
               ),
               //subtitle
               const Text(
-                'Brand new sneakers and custom kicks',
+                'XENON, Your Ultimate Delivery Partner.',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 48),
+              const SizedBox(height: 250),
               //start now button
               GestureDetector(
                 onTap: () {
@@ -52,7 +52,7 @@ class IntroPage extends StatelessWidget {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[900],
+                    color: Color.fromARGB(255, 0, 30, 69),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Padding(

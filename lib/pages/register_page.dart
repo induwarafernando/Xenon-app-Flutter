@@ -20,7 +20,7 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 139, 149, 163),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -29,19 +29,21 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               // logo
-              const Icon(
-                Icons.lock,
-                size: 100,
+              Image.asset(
+                'lib/images/LogoX2.png',
+                height: 70,
+                width: 500,
               ),
 
               const SizedBox(height: 50),
 
               // welcome back, you've been missed!
               Text(
-                'Welcome back you\'ve been missed!',
+                'Your Styles, Your Stores, We Deliver!',
                 style: TextStyle(
-                  color: Colors.grey[700],
-                  fontSize: 15,
+                  color: Color.fromARGB(255, 2, 35, 105),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
 
