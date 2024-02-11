@@ -18,7 +18,7 @@ class _OrderPageState extends State<HomePage> {
     return Container(
       height: 300,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey[400],
         borderRadius: BorderRadius.circular(12),
       ),
     );
