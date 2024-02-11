@@ -31,6 +31,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   flutter:
     sdk: flutter
+  # google_maps_flutter: ^2.0.12
   provider: ^5.0.0
 
 
@@ -41,6 +42,7 @@ dependencies:
   simple_animations: ^5.0.2
   flutter_vector_icons: ^2.0.0
   carousel_slider: ^4.2.1
+  
 
 dev_dependencies:
   flutter_test:
