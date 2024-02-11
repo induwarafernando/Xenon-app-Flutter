@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:xenon_app/pages/order_screen.dart';
 import 'package:xenon_app/pages/welcome_screen.dart';
 import 'models/cart.dart';
 
