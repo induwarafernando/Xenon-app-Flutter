@@ -20,7 +20,7 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -38,7 +38,7 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               // welcome back, you've been missed!
-              Text(
+              const Text(
                 'Your Styles, Your Stores, We Deliver!',
                 style: TextStyle(
                   color: Color.fromARGB(255, 2, 35, 105),
@@ -140,9 +140,9 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 10),
 
               // google + apple sign in buttons
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   // google button
                   SquareTile(
                       imagePath: 'lib/images/google.png',

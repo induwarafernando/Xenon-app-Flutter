@@ -7,7 +7,7 @@ class Cart extends ChangeNotifier {
       name: "Denim Jacket",
       price: "20",
       //catchy phrase
-      description: '\"Best Denim Style Ever Seen\"',
+      description: '"Best Denim Style Ever Seen"',
       imagePath: 'lib/images/pd2.jpeg',
     ),
     Shoe(

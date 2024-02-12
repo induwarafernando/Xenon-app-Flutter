@@ -7,21 +7,21 @@ class OrderActivityScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Mock list of past orders
     List<Order> pastOrders = [
-      Order(orderNumber: '01', orderStatus: OrderStatus.Pending),
-      Order(orderNumber: '02', orderStatus: OrderStatus.OutForDelivery),
-      Order(orderNumber: '03', orderStatus: OrderStatus.Recieved),
+      const Order(orderNumber: '01', orderStatus: OrderStatus.Pending),
+      const Order(orderNumber: '02', orderStatus: OrderStatus.OutForDelivery),
+      const Order(orderNumber: '03', orderStatus: OrderStatus.Recieved),
       // Add more orders here as needed
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Details'),
-        backgroundColor: Color.fromARGB(255, 238, 245, 253),
+        title: const Text('Order Details'),
+        backgroundColor: const Color.fromARGB(255, 238, 245, 253),
         automaticallyImplyLeading: false, // Remove back button
       ),
       body: Container(
         color:
-            Color.fromARGB(255, 238, 245, 253), // Set background color to grey
+            const Color.fromARGB(255, 238, 245, 253), // Set background color to grey
         child: ListView.builder(
           itemCount: pastOrders.length,
           itemBuilder: (context, index) {
@@ -29,7 +29,7 @@ class OrderActivityScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Card(
-                color: Color.fromARGB(
+                color: const Color.fromARGB(
                     184, 156, 222, 241), // Set card background color to white
                 elevation: 3, // Add a slight elevation to the card
                 shape: RoundedRectangleBorder(
@@ -79,7 +79,7 @@ class OrderTile extends StatelessWidget {
         statusColor = Colors.blue;
         break;
       case OrderStatus.Recieved:
-        statusColor = Color.fromARGB(255, 2, 103, 5);
+        statusColor = const Color.fromARGB(255, 2, 103, 5);
         break;
     }
 

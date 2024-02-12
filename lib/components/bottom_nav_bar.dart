@@ -4,22 +4,22 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 class MyBottomNavBar extends StatelessWidget {
   final void Function(int)? onTabChange;
 
-  MyBottomNavBar({Key? key, required this.onTabChange}) : super(key: key);
+  const MyBottomNavBar({Key? key, required this.onTabChange}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 1), // Reduced padding vertically
+      padding: const EdgeInsets.symmetric(vertical: 1), // Reduced padding vertically
       child: GNav(
         color: Colors.grey[400],
         activeColor: Colors.black,
         tabActiveBorder:
-            Border.all(color: Color.fromARGB(255, 205, 210, 211), width: 1),
+            Border.all(color: const Color.fromARGB(255, 205, 210, 211), width: 1),
         tabBackgroundColor: Colors.grey.shade100,
         mainAxisAlignment: MainAxisAlignment.center,
         tabBorderRadius: 16,
         onTabChange: (value) => onTabChange!(value),
-        tabs: [
+        tabs: const [
           GButton(
             iconSize: 24, // Adjusted icon size
             icon: Icons.home,

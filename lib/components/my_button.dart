@@ -12,7 +12,7 @@ class MyButton extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => IntroPage()),
+          MaterialPageRoute(builder: (context) => const IntroPage()),
         );
       },
       child: Container(
@@ -20,7 +20,7 @@ class MyButton extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 3, 65, 132),
+          color: const Color.fromARGB(255, 3, 65, 132),
           borderRadius: BorderRadius.circular(8),
         ),
         child: const Center(

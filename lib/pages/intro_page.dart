@@ -7,7 +7,7 @@ class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -47,18 +47,18 @@ class IntroPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
+                    MaterialPageRoute(builder: (context) => const HomePage()),
                   );
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 0, 30, 69),
+                    color: const Color.fromARGB(255, 0, 30, 69),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: const Center(
-                      child: const Text(
+                  child: const Padding(
+                    padding: EdgeInsets.all(30),
+                    child: Center(
+                      child: Text(
                         'Shop Now',
                         style: TextStyle(
                           color: Colors.white,

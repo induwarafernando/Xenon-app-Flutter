@@ -37,7 +37,7 @@ class LiveOrderScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
+                      const Text(
                         'Order number: 01',
                         style: TextStyle(
                           fontSize: 14,
@@ -45,8 +45,8 @@ class LiveOrderScreen extends StatelessWidget {
                           color: Color.fromARGB(255, 64, 65, 67),
                         ),
                       ),
-                      SizedBox(height: 8),
-                      Text(
+                      const SizedBox(height: 8),
+                      const Text(
                         'Order status: Out for delivery',
                         style: TextStyle(
                           fontSize: 19,
@@ -54,7 +54,7 @@ class LiveOrderScreen extends StatelessWidget {
                           color: Color.fromARGB(255, 29, 131, 4),
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(
                         'Remaining time: 34 mins',
                         style: TextStyle(
@@ -87,7 +87,7 @@ class GlassMorphismTile extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: Colors.blue.withOpacity(0.4),
             borderRadius: BorderRadius.circular(16),

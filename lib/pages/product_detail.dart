@@ -99,7 +99,7 @@ class ProductDetails extends StatelessWidget {
               child: Container(
                 height: size.height / 2.2,
                 width: size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColor.secondary,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(32),
@@ -130,8 +130,8 @@ class ProductDetails extends StatelessWidget {
                           style: AppStyle.text
                               .copyWith(color: Colors.white.withOpacity(.8))),
                       const Spacing(),
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           RectButtonSelected(
                             label: 'S',
                           ),
@@ -147,8 +147,8 @@ class ProductDetails extends StatelessWidget {
                         ],
                       ),
                       const Spacing(),
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           TabTitle(label: 'Details', selected: true),
                           SizedBox(width: 8),
                           TabTitle(label: 'Review', selected: false),

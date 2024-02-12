@@ -20,15 +20,15 @@ class MyTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         obscureText: obscureText,
-        style: TextStyle(fontSize: 14.0),
+        style: const TextStyle(fontSize: 14.0),
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(
+          contentPadding: const EdgeInsets.symmetric(
               vertical: 12.0, horizontal: 10), // Adjust vertical padding
 
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Color.fromARGB(255, 59, 133, 230)),
           ),
           fillColor: Colors.grey.shade200,

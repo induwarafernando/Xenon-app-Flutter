@@ -13,7 +13,7 @@ class WelcomeScreen extends StatelessWidget {
     return CustomScaffold(
       child: Column(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: EdgeInsets.only(left: 20.0, top: 450.0),
@@ -30,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: EdgeInsets.only(left: 20.0, top: 1.0),
+              padding: const EdgeInsets.only(left: 20.0, top: 1.0),
               child: Text(
                 'Your Closet\'s Best Friend  XENON, Your Ultimate Delivery Partner.',
                 style: TextStyle(
@@ -47,7 +47,7 @@ class WelcomeScreen extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: WelcomeButton(
                       buttonText: 'Sign in',
                       onTap: LoginPage(),

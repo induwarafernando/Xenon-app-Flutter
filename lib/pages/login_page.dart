@@ -5,7 +5,7 @@ import 'package:xenon_app/components/square_tile.dart';
 import 'package:xenon_app/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(
                   color: isDarkMode
                       ? Colors.white
-                      : Color.fromARGB(255, 2, 35, 105),
+                      : const Color.fromARGB(255, 2, 35, 105),
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -124,9 +124,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   SquareTile(
                       imagePath: 'lib/images/google.png',
                       height: 40,
@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         color: isDarkMode
                             ? Colors.blue
-                            : Color.fromARGB(255, 1, 19, 80),
+                            : const Color.fromARGB(255, 1, 19, 80),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

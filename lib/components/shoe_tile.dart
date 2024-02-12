@@ -16,7 +16,7 @@ class ShoeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(left: 25),
+        margin: const EdgeInsets.only(left: 25),
         width: 280,
         decoration: BoxDecoration(
           color: Colors.grey[100],
@@ -38,7 +38,7 @@ class ShoeTile extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          ProductDetails()), // Navigate to register page
+                          const ProductDetails()), // Navigate to register page
                 );
               },
               child: Text(
@@ -62,7 +62,7 @@ class ShoeTile extends StatelessWidget {
                       // shoename
                       Text(
                         shoe.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
@@ -70,8 +70,8 @@ class ShoeTile extends StatelessWidget {
 
                       //price
                       Text(
-                        '\$' + shoe.price,
-                        style: TextStyle(
+                        '\$${shoe.price}',
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 20,
                         ),
