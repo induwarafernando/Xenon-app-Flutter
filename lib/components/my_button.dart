@@ -4,7 +4,7 @@ import 'package:xenon_app/pages/intro_page.dart';
 class MyButton extends StatelessWidget {
   final Function()? onTap;
 
-  const MyButton({super.key, required this.onTap});
+  const MyButton({super.key, required this.onTap, required bool isDarkMode});
 
   @override
   Widget build(BuildContext context) {
