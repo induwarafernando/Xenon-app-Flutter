@@ -52,7 +52,6 @@ class RegisterPage extends StatelessWidget {
                 controller: emailController,
                 hintText: 'Email',
                 obscureText: false,
-                isDarkMode: false,
               ),
               const SizedBox(height: 10),
               // username textfield
@@ -60,7 +59,6 @@ class RegisterPage extends StatelessWidget {
                 controller: usernameController,
                 hintText: 'Username',
                 obscureText: false,
-                isDarkMode: false,
               ),
 
               const SizedBox(height: 10),
@@ -70,7 +68,6 @@ class RegisterPage extends StatelessWidget {
                 controller: passwordController,
                 hintText: 'Password',
                 obscureText: true,
-                isDarkMode: false,
               ),
 
               const SizedBox(height: 10),
@@ -79,7 +76,6 @@ class RegisterPage extends StatelessWidget {
                 controller: confirmPasswordController,
                 hintText: 'Confirm Password',
                 obscureText: true,
-                isDarkMode: false,
               ),
 
               const SizedBox(height: 5),
@@ -104,7 +100,6 @@ class RegisterPage extends StatelessWidget {
 
               MyButton(
                 onTap: signUserIn,
-                isDarkMode: false,
               ),
 
               const SizedBox(height: 10),
