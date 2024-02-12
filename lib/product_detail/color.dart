@@ -4,13 +4,13 @@ abstract class AppColor {
   static const LinearGradient gradient = LinearGradient(
     colors: [
       Colors.white,
-      Color(0xFFCBAAFF),
+      Color.fromARGB(255, 170, 210, 255),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
-  static const Color primary = Color(0xFF935DE6);
-  static const Color secondary = Color(0xFF0C0A19);
+  static const Color primary = Color.fromARGB(255, 135, 179, 241);
+  static const Color secondary = Color.fromARGB(128, 72, 146, 230);
   static const Color text = Color(0xFF32303d);
   static const Color accent = Color(0xFFFFFFFF);
   static const Color accent_1 = Color(0xFFefeff6);
