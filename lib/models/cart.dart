@@ -19,13 +19,13 @@ class Cart extends ChangeNotifier {
     Shoe(
       name: "Party Dress",
       price: "29",
-      description: "\"Elegant and Stylish for Parties\"",
+      description: "\"Elegant and Stylish\"",
       imagePath: 'lib/images/pd5.png',
     ),
     Shoe(
       name: "Side Bag",
       price: "22",
-      description: "\"Richest Leather Quality for Bags\"",
+      description: "\"Richest Leather Quality\"",
       imagePath: 'lib/images/pd6.jpeg',
     ),
   ];
