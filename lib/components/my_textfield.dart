@@ -10,6 +10,7 @@ class MyTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.obscureText,
+    required bool isDarkMode,
   });
 
   @override
