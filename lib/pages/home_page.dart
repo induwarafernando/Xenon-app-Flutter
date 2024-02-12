@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Color.fromARGB(255, 238, 245, 253),
       bottomNavigationBar: MyBottomNavBar(
         onTabChange: (index) => navigateBottomNavBar(index),
       ),
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
               'XENON',
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 28,
+                  fontSize: 20,
                   fontWeight: FontWeight.w600 // Adjust font size as needed
                   ),
             ),
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
               ': Your Style, Your Stores, We Deliver',
               style: TextStyle(
                 color: Colors.grey[700],
-                fontSize: 18, // Adjust font size as needed
+                fontSize: 13, // Adjust font size as needed
               ),
             ),
           ],
