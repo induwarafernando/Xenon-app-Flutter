@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 DrawerHeader(
                   child: Image.asset(
-                    'lib/imagesnike/logo.png',
+                    'lib/images/LogoX1.png',
                     color: Colors.white,
                   ),
                 ),
