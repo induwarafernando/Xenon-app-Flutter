@@ -21,8 +21,7 @@ class ProductDetails extends StatelessWidget {
                   image: DecorationImage(
                       alignment: Alignment.bottomRight,
                       fit: BoxFit.cover,
-                      image: AssetImage(
-                          'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'))),
+                      image: AssetImage('lib/images/pd5.png'))),
             ),
           ),
           Positioned(
