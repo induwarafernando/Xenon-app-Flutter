@@ -48,6 +48,8 @@ class _ShopPageState extends State<ShopPage> {
     return Consumer<Cart>(
       builder: (context, value, child) => Column(
         children: [
+          const SizedBox(height: 18),
+
           // Carousel slider
           CarouselSlider(
             items: _images.map((image) {
@@ -104,7 +106,7 @@ class _ShopPageState extends State<ShopPage> {
                   'Hot Picks',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                      fontSize: 20,
                       color: Colors.black),
                 ),
                 Text(
