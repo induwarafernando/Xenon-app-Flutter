@@ -9,7 +9,7 @@ abstract class AppColor {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
-  static const Color primary = Color.fromARGB(255, 135, 179, 241);
+  static const Color primary = Color.fromARGB(255, 1, 30, 71);
   static const Color secondary = Color.fromARGB(128, 72, 146, 230);
   static const Color text = Color(0xFF32303d);
   static const Color accent = Color(0xFFFFFFFF);
