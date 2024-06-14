@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "883745746449",
+    "project_id": "xenon-5acf8",
+    "storage_bucket": "xenon-5acf8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883745746449:android:314818681ba1005a888bb0",
+        "android_client_info": {
+          "package_name": "com.example.nike"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxXiuHmoDIAHyl4L2CB8I8Ksnu7ILBRr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

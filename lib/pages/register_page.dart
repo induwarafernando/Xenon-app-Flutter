@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:xenon_app/components/my_button.dart';
 import 'package:xenon_app/components/my_textfield.dart';
 import 'package:xenon_app/components/square_tile.dart';
-import 'login_page.dart'; // Import the login page to use the toggle button
+import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({Key? key}) : super(key: key);
@@ -19,7 +20,52 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  void signUp() {}
+  Future<void> signUp() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      // Show an error if passwords do not match
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Passwords do not match")),
+      );
+      return;
+    }
+
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      // Optionally, you can save the username in the user's profile
+      await userCredential.user?.updateDisplayName(usernameController.text);
+
+      // Show success message or navigate to another screen
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("User registered successfully")),
+      );
+
+      // Navigate to login page or home page after registration
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('The password provided is too weak.')),
+        );
+      } else if (e.code == 'email-already-in-use') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('The account already exists for that email.')),
+        );
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to register user')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

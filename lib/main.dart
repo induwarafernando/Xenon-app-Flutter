@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:xenon_app/pages/welcome_screen.dart';
-import 'models/cart.dart';
+import 'package:xenon_app/pages/welcome_screen.dart'; // Ensure this is correct
+import 'models/cart.dart'; // Ensure this is correct
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await Firebase.initializeApp();
+  } catch (e) {
+    print("Firebase initialization error: $e");
+  }
+
   runApp(const MyApp());
 }
 
@@ -19,7 +28,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
-        home: const WelcomeScreen(),
+        home: const WelcomeScreen(), // Ensure this is defined and working
       ),
     ); // MaterialApp
   }
