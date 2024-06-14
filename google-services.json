@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "54229276528",
+    "project_id": "xenon-12a07",
+    "storage_bucket": "xenon-12a07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54229276528:android:59c820c5a8aeb345bae1b5",
+        "android_client_info": {
+          "package_name": "com.xenon.xenon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC48HC8O2-2P9m7-KfkogPM4J6lcnLUf_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
