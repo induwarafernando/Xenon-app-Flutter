@@ -1,29 +1,95 @@
+import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart' as loc;
+import 'package:permission_handler/permission_handler.dart' as perm;
+import 'dart:async';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
-
-class LiveOrderScreen extends StatelessWidget {
+class LiveOrderScreen extends StatefulWidget {
   const LiveOrderScreen({Key? key}) : super(key: key);
+
+  @override
+  _LiveOrderScreenState createState() => _LiveOrderScreenState();
+}
+
+class _LiveOrderScreenState extends State<LiveOrderScreen> {
+  Completer<GoogleMapController> _controller = Completer();
+  LatLng _currentPosition = LatLng(0, 0); // Initial position at (0, 0)
+  loc.Location location = loc.Location();
+
+  @override
+  void initState() {
+    super.initState();
+    _getPermission(); // Request location permission
+    _getLocation(); // Get current location
+  }
+
+  Future<void> _getPermission() async {
+    var status = await perm.Permission.location.request();
+    if (status.isGranted) {
+      print("Permission Granted");
+    } else if (status.isDenied) {
+      print("Permission Denied");
+      perm.openAppSettings(); // Open app settings if permission is denied
+    }
+  }
+
+  Future<void> _getLocation() async {
+    loc.LocationData locationData;
+    bool serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+
+    loc.PermissionStatus permissionGranted = await location.hasPermission();
+    if (permissionGranted == loc.PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != loc.PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    locationData = await location.getLocation();
+    setState(() {
+      _currentPosition = LatLng(
+          locationData.latitude!,
+          locationData
+              .longitude!); // Update current position with fetched location
+    });
+
+    // Move the camera to the current location
+    if (_controller.isCompleted) {
+      final GoogleMapController controller = await _controller.future;
+      controller.animateCamera(
+        CameraUpdate.newLatLngZoom(
+            _currentPosition, 14.0), // Zoom level of 14.0
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // Wrap the image in a SingleChildScrollView to enable scroll
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Image.asset(
-                'lib/images/map.png', // Path to your image asset
-                fit: BoxFit.cover, // Cover the entire screen
-                width: 700, // Adjust width based on image size
-                height: 1000, // Adjust height based on image size
-              ),
+          GoogleMap(
+            mapType: MapType.normal, // Normal map type
+            initialCameraPosition: CameraPosition(
+              target:
+                  _currentPosition, // Initial camera position based on _currentPosition
+              zoom: 14.0, // Initial zoom level
             ),
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(
+                  controller); // Complete controller when map is created
+            },
+            myLocationEnabled: true, // Show my location button
+            myLocationButtonEnabled: true, // Enable my location
+            zoomControlsEnabled: false, // Disable zoom controls
           ),
-          // Positioned widget to place the order details at the bottom center
           Positioned(
             bottom: 16,
             left: 0,

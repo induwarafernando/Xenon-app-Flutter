@@ -4,6 +4,7 @@ import 'package:xenon_app/pages/order_activity_screen.dart';
 import '../components/bottom_nav_bar.dart';
 import 'cart_page.dart';
 import 'shop_page.dart';
+import 'profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
@@ -50,13 +51,13 @@ class _HomePageState extends State<HomePage> {
         ),
         title: Row(
           children: [
-            SizedBox(width: 8), // Adjust spacing between logo and text
+            SizedBox(width: 2), // Adjust spacing between logo and text
             Text(
               'XENON',
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600 // Adjust font size as needed
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700 // Adjust font size as needed
                   ),
             ),
             SizedBox(width: 4), // Adjust spacing between text and slogan
@@ -66,6 +67,23 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.grey[700],
                 fontSize: 13, // Adjust font size as needed
               ),
+            ),
+            SizedBox(width: 4), // Adjust spacing between text and icon
+            //add aprofile icon
+            IconButton(
+              alignment: Alignment.topRight,
+              //on prressed navigate to profile page route
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfilePage(),
+                  ),
+                );
+              },
+
+              icon: Icon(Icons.account_circle),
+              color: Colors.black,
             ),
           ],
         ),

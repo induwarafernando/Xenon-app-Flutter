@@ -4,6 +4,7 @@ import 'package:xenon_app/components/my_button.dart';
 import 'package:xenon_app/components/my_textfield.dart';
 import 'package:xenon_app/components/square_tile.dart';
 import 'package:xenon_app/pages/register_page.dart';
+import 'package:xenon_app/pages/intro_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,9 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  //text controllers for email and password
-  //to get the text from the textfield
-  //and to clear the textfield
+  // Text controllers for email and password
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -28,14 +27,34 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+
+      // Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('User signed in successfully')),
+      );
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const IntroPage()));
+
       // Handle successful sign-in, e.g., navigate to home page
       print("User signed in: ${userCredential.user}");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('No user found for that email.')),
+        );
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Wrong password provided for that user.')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to sign in: ${e.message}')),
+        );
       }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred: $e')),
+      );
     }
   }
 

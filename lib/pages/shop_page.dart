@@ -55,10 +55,10 @@ class _ShopPageState extends State<ShopPage> {
             items: _images.map((image) {
               return Container(
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 4.0),
+                margin: EdgeInsets.symmetric(horizontal: 2.0),
                 decoration: BoxDecoration(
                   color: Colors.grey[200], // Adjust as needed
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(6.0),
                   image: DecorationImage(
                     image: AssetImage(
                         'lib/images/$image'), // Change the path accordingly

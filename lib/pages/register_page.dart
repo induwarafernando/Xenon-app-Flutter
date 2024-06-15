@@ -4,6 +4,7 @@ import 'package:xenon_app/components/my_button.dart';
 import 'package:xenon_app/components/my_textfield.dart';
 import 'package:xenon_app/components/square_tile.dart';
 import 'login_page.dart';
+import 'intro_page.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({Key? key}) : super(key: key);
@@ -20,7 +21,18 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  // Email validation regex
+  final RegExp emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+
   Future<void> signUp() async {
+    // Validate email format
+    if (!emailRegExp.hasMatch(emailController.text.trim())) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('The email address is badly formatted.')),
+      );
+      return;
+    }
+
     if (passwordController.text != confirmPasswordController.text) {
       // Show an error if passwords do not match
       ScaffoldMessenger.of(context).showSnackBar(
@@ -32,22 +44,23 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
       );
 
       // Optionally, you can save the username in the user's profile
-      await userCredential.user?.updateDisplayName(usernameController.text);
+      await userCredential.user
+          ?.updateDisplayName(usernameController.text.trim());
 
-      // Show success message or navigate to another screen
+      // Show success message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("User registered successfully")),
       );
 
-      // Navigate to login page or home page after registration
-      Navigator.push(
+      // Navigate to login page after registration
+      Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => IntroPage()),
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -58,11 +71,15 @@ class _RegisterPageState extends State<RegisterPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('The account already exists for that email.')),
         );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to register user: ${e.message}')),
+        );
       }
     } catch (e) {
       print(e);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to register user')),
+        SnackBar(content: Text('An error occurred: $e')),
       );
     }
   }

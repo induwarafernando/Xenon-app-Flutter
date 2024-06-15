@@ -3,18 +3,14 @@ import 'package:xenon_app/pages/intro_page.dart';
 
 class MyButton extends StatelessWidget {
   final Function()? onTap;
+  final bool isDarkMode;
 
-  const MyButton({super.key, required this.onTap, required bool isDarkMode});
+  const MyButton({super.key, required this.onTap, required this.isDarkMode});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const IntroPage()),
-        );
-      },
+      onTap: onTap,
       child: Container(
         height: 65.0,
         padding: const EdgeInsets.all(10),
