@@ -1,18 +1,37 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
-class OrderActivityScreen extends StatelessWidget {
+class OrderActivityScreen extends StatefulWidget {
   const OrderActivityScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // Mock list of past orders
-    List<Order> pastOrders = [
-      const Order(orderNumber: '01', orderStatus: OrderStatus.Pending),
-      const Order(orderNumber: '02', orderStatus: OrderStatus.OutForDelivery),
-      const Order(orderNumber: '03', orderStatus: OrderStatus.Recieved),
-      // Add more orders here as needed
-    ];
+  _OrderActivityScreenState createState() => _OrderActivityScreenState();
+}
 
+class _OrderActivityScreenState extends State<OrderActivityScreen> {
+  List<Order> pastOrders = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadOrderData();
+  }
+
+  Future<void> loadOrderData() async {
+    try {
+      final String response = await rootBundle.loadString('assets/orders.json');
+      final List<dynamic> data = jsonDecode(response);
+      setState(() {
+        pastOrders = data.map((json) => Order.fromJson(json)).toList();
+      });
+    } catch (e) {
+      print("Error loading order data: $e");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Order Details'),
@@ -20,29 +39,32 @@ class OrderActivityScreen extends StatelessWidget {
         automaticallyImplyLeading: false, // Remove back button
       ),
       body: Container(
-        color:
-            const Color.fromARGB(255, 238, 245, 253), // Set background color to grey
-        child: ListView.builder(
-          itemCount: pastOrders.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-              child: Card(
-                color: const Color.fromARGB(
-                    184, 156, 222, 241), // Set card background color to white
-                elevation: 3, // Add a slight elevation to the card
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10), // Set border radius
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: OrderTile(order: pastOrders[index]),
-                ),
+        color: const Color.fromARGB(
+            255, 238, 245, 253), // Set background color to grey
+        child: pastOrders.isEmpty
+            ? const Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                itemCount: pastOrders.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 20.0),
+                    child: Card(
+                      color: const Color.fromARGB(184, 156, 222,
+                          241), // Set card background color to white
+                      elevation: 3, // Add a slight elevation to the card
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(10), // Set border radius
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: OrderTile(order: pastOrders[index]),
+                      ),
+                    ),
+                  );
+                },
               ),
-            );
-          },
-        ),
       ),
     );
   }
@@ -108,6 +130,37 @@ class Order {
     required this.orderNumber,
     required this.orderStatus,
   });
+
+  // Factory constructor to create an Order from JSON
+  factory Order.fromJson(Map<String, dynamic> json) {
+    return Order(
+      orderNumber: json['orderNumber'],
+      orderStatus: _parseOrderStatus(json['orderStatus']),
+    );
+  }
+
+  // Method to convert an Order to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'orderNumber': orderNumber,
+      'orderStatus': orderStatus.toString().split('.').last,
+    };
+  }
+
+  // Helper method to parse OrderStatus
+  static OrderStatus _parseOrderStatus(String status) {
+    switch (status) {
+      case 'Pending':
+        return OrderStatus.Pending;
+      case 'OutForDelivery':
+        return OrderStatus.OutForDelivery;
+      case 'Received':
+      case 'Recieved':
+        return OrderStatus.Recieved;
+      default:
+        throw ArgumentError('Invalid order status: $status');
+    }
+  }
 }
 
 enum OrderStatus {

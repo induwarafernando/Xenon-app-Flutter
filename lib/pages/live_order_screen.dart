@@ -16,21 +16,26 @@ class _LiveOrderScreenState extends State<LiveOrderScreen> {
   Completer<GoogleMapController> _controller = Completer();
   LatLng _currentPosition = LatLng(0, 0); // Initial position at (0, 0)
   loc.Location location = loc.Location();
+  bool _mapLoaded = false; // Flag to track if Google Map is loaded
 
   @override
   void initState() {
     super.initState();
-    _getPermission(); // Request location permission
-    _getLocation(); // Get current location
+    _requestLocationPermission(); // Request location permission
   }
 
-  Future<void> _getPermission() async {
-    var status = await perm.Permission.location.request();
-    if (status.isGranted) {
-      print("Permission Granted");
-    } else if (status.isDenied) {
-      print("Permission Denied");
-      perm.openAppSettings(); // Open app settings if permission is denied
+  Future<void> _requestLocationPermission() async {
+    while (true) {
+      var status = await perm.Permission.location.request();
+      if (status.isGranted) {
+        _getLocation(); // Get current location if permission is granted
+        break;
+      } else if (status.isDenied || status.isPermanentlyDenied) {
+        await Future.delayed(Duration(seconds: 2)); // Retry after delay
+      } else {
+        perm.openAppSettings(); // Open app settings if permission is denied
+        break;
+      }
     }
   }
 
@@ -58,6 +63,7 @@ class _LiveOrderScreenState extends State<LiveOrderScreen> {
           locationData.latitude!,
           locationData
               .longitude!); // Update current position with fetched location
+      _mapLoaded = true; // Set map loaded flag to true
     });
 
     // Move the camera to the current location
@@ -65,7 +71,9 @@ class _LiveOrderScreenState extends State<LiveOrderScreen> {
       final GoogleMapController controller = await _controller.future;
       controller.animateCamera(
         CameraUpdate.newLatLngZoom(
-            _currentPosition, 14.0), // Zoom level of 14.0
+          _currentPosition, // Zoom level of 14.0
+          14.0,
+        ),
       );
     }
   }
@@ -75,21 +83,40 @@ class _LiveOrderScreenState extends State<LiveOrderScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          GoogleMap(
-            mapType: MapType.normal, // Normal map type
-            initialCameraPosition: CameraPosition(
-              target:
-                  _currentPosition, // Initial camera position based on _currentPosition
-              zoom: 14.0, // Initial zoom level
+          // Always show the fallback image in the background
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Container(
+                width: MediaQuery.of(context).size.width *
+                    2, // Adjust width as needed
+                height: MediaQuery.of(context).size.height *
+                    2, // Adjust height as needed
+                child: Image.asset(
+                  'lib/images/map.png',
+                  fit: BoxFit.cover, // Cover the entire scrollable area
+                ),
+              ),
             ),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(
-                  controller); // Complete controller when map is created
-            },
-            myLocationEnabled: true, // Show my location button
-            myLocationButtonEnabled: true, // Enable my location
-            zoomControlsEnabled: false, // Disable zoom controls
           ),
+          // Google Map widget if loaded
+          if (_mapLoaded)
+            GoogleMap(
+              mapType: MapType.normal, // Normal map type
+              initialCameraPosition: CameraPosition(
+                target: _currentPosition, // Initial camera position
+                zoom: 14.0, // Initial zoom level
+              ),
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(
+                    controller); // Complete controller when map is created
+              },
+              myLocationEnabled: true, // Show my location button
+              myLocationButtonEnabled: true, // Enable my location
+              zoomControlsEnabled: false, // Disable zoom controls
+            ),
+          // Order details at the bottom
           Positioned(
             bottom: 16,
             left: 0,

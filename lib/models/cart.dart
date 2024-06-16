@@ -28,6 +28,41 @@ class Cart extends ChangeNotifier {
       description: "\"Richest Leather Quality\"",
       imagePath: 'lib/images/pd6.jpeg',
     ),
+    //for pd8-women casual wear Top price 4200
+    Shoe(
+      name: "Casual Wear - Top",
+      price: "4200",
+      description: "\"Casual and Comfortable\"",
+      imagePath: 'lib/images/pd7.png',
+    ),
+    //pd7-casual frock long sleeved 5000
+    Shoe(
+      name: "Casual Frock - Long Sleeved",
+      price: "5000",
+      description: "\"Casual and Comfortable\"",
+      imagePath: 'lib/images/pd8.png',
+    ),
+    //pd9- women casual wear top 4000
+    Shoe(
+      name: "Casual Wear - Top Printed",
+      price: "4000",
+      description: "\"Stylish and Comfortable\"",
+      imagePath: 'lib/images/pd9.png',
+    ),
+    //pd10 -frock pink long sleeved 4500
+    Shoe(
+      name: "Casual Frock - Long Sleeved Pink",
+      price: "4500",
+      description: "\"fasionable and Comfortable\"",
+      imagePath: 'lib/images/pd10.png',
+    ),
+    //,pd11 - women office wear top 4000
+    Shoe(
+      name: "Office Wear - Top",
+      price: "4000",
+      description: "\"Elegant and Stylish\"",
+      imagePath: 'lib/images/pd11.png',
+    ),
   ];
 
   //list of itemsin user cart

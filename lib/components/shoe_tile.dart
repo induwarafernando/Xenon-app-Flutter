@@ -19,7 +19,7 @@ class ShoeTile extends StatelessWidget {
         margin: const EdgeInsets.only(left: 25),
         width: 280,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 161, 208, 255),
+          color: Color.fromARGB(255, 255, 255, 255),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -37,8 +37,10 @@ class ShoeTile extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          const ProductDetails()), // Navigate to register page
+                    builder: (context) =>
+                        //Passing the shoe object to the ProductDetail page
+                        ProductDetails(shoe: shoe), // Pass the shoe parameter
+                  ),
                 );
               },
               child: Text(

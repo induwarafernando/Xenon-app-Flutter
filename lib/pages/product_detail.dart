@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:xenon_app/product_detail/color.dart';
 import 'package:xenon_app/product_detail/style.dart';
+import 'package:xenon_app/models/shoe.dart';
 
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({Key? key}) : super(key: key);
+  final Shoe shoe;
+  const ProductDetails({Key? key, required this.shoe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +19,13 @@ class ProductDetails extends StatelessWidget {
               alignment: Alignment.topCenter,
               height: size.height / 2.2,
               width: size.width,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      alignment: Alignment.bottomRight,
-                      fit: BoxFit.cover,
-                      image: AssetImage('lib/images/pd5.png'))),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  alignment: Alignment.bottomRight,
+                  fit: BoxFit.cover,
+                  image: AssetImage(shoe.imagePath),
+                ),
+              ),
             ),
           ),
           Positioned(
@@ -33,8 +37,7 @@ class ProductDetails extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: AppColor.primary,
                     borderRadius: BorderRadius.circular(11)),
-                child: Image.asset(
-                    'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'),
+                child: Image.asset(shoe.imagePath),
               )),
           Positioned(
             top: 150,
@@ -53,10 +56,9 @@ class ProductDetails extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColor.primary, width: 2),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(
-                              'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'))),
+                          image: AssetImage(shoe.imagePath))),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 6),
@@ -64,10 +66,9 @@ class ProductDetails extends StatelessWidget {
                   width: 61,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(
-                              'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'))),
+                          image: AssetImage(shoe.imagePath))),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 6),
@@ -75,10 +76,9 @@ class ProductDetails extends StatelessWidget {
                   width: 61,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(
-                              'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'))),
+                          image: AssetImage(shoe.imagePath))),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 6),
@@ -86,10 +86,9 @@ class ProductDetails extends StatelessWidget {
                   width: 61,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(
-                              'lib/imagesnike/pexels-aman-jakhar-1124466.jpg'))),
+                          image: AssetImage(shoe.imagePath))),
                 ),
               ]),
             ),
@@ -122,13 +121,14 @@ class ProductDetails extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const ProductNameAndPrice(),
+                      ProductNameAndPrice(shoe: shoe),
                       const SizedBox(
                         height: 16,
                       ),
                       Text('Size',
-                          style: AppStyle.text
-                              .copyWith(color: Colors.white.withOpacity(.8))),
+                          style: AppStyle.text.copyWith(
+                              color: Color.fromARGB(255, 6, 1, 37)
+                                  .withOpacity(.8))),
                       const Spacing(),
                       const Row(
                         children: [
@@ -156,8 +156,9 @@ class ProductDetails extends StatelessWidget {
                       ),
                       const Spacing(),
                       Text(
-                        'This is weekdays design-your go-to for all the latest trends, no matter who you are.',
-                        style: AppStyle.bodyText.copyWith(color: Colors.white),
+                        shoe.description,
+                        style: AppStyle.bodyText
+                            .copyWith(color: Color.fromARGB(255, 25, 1, 72)),
                       ),
                       const Spacing(),
                       Center(
@@ -185,6 +186,33 @@ class ProductDetails extends StatelessWidget {
   }
 }
 
+class ProductNameAndPrice extends StatelessWidget {
+  final Shoe shoe;
+  const ProductNameAndPrice({
+    Key? key,
+    required this.shoe,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          shoe.name,
+          style: AppStyle.h1Light,
+        ),
+        Text(
+          '\$${shoe.price}',
+          style: AppStyle.h1Light
+              .copyWith(color: AppColor.primary, fontWeight: FontWeight.w600),
+        ),
+      ],
+    );
+  }
+}
+
 class TabTitle extends StatelessWidget {
   final String label;
   final bool selected;
@@ -203,7 +231,7 @@ class TabTitle extends StatelessWidget {
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             label,
-            style: AppStyle.text.copyWith(color: Colors.white),
+            style: AppStyle.text.copyWith(color: Color.fromARGB(255, 1, 6, 54)),
           ),
           const SizedBox(
             height: 4,
@@ -276,33 +304,8 @@ class RectButton extends StatelessWidget {
       child: Center(
           child: Text(
         label,
-        style: AppStyle.text.copyWith(color: Colors.white),
+        style: AppStyle.text.copyWith(color: Color.fromARGB(255, 15, 2, 62)),
       )),
-    );
-  }
-}
-
-class ProductNameAndPrice extends StatelessWidget {
-  const ProductNameAndPrice({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text(
-          'Jogger Lilac',
-          style: AppStyle.h1Light,
-        ),
-        Text(
-          '\$15.00',
-          style: AppStyle.h1Light
-              .copyWith(color: AppColor.primary, fontWeight: FontWeight.w600),
-        ),
-      ],
     );
   }
 }

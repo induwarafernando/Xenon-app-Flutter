@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:xenon_app/pages/login_page.dart';
+import 'package:location/location.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -14,11 +15,13 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   User? user;
-  String? networkStatus;
+  String? networkStatus = 'WiFi'; // Default network status as WiFi
   StreamSubscription? _subscription;
   final ImagePicker _picker = ImagePicker();
-  XFile? _imageFile;
-  String? imageUrl;
+  File? _localImageFile;
+  bool _isLocationServiceEnabled = false;
+  bool _isNetworkStatusEnabled = false;
+  LocationData? _locationData;
 
   @override
   void initState() {
@@ -28,6 +31,12 @@ class _ProfilePageState extends State<ProfilePage> {
     });
     getUser();
     getNetworkStatus();
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
   }
 
   void getUser() {
@@ -42,30 +51,35 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> getNetworkStatus() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile) {
-      setState(() {
-        networkStatus = 'Mobile';
-      });
-    } else if (connectivityResult == ConnectivityResult.wifi) {
-      setState(() {
+    setState(() {
+      if (connectivityResult == ConnectivityResult.mobile) {
+        networkStatus = 'Mobile Data';
+      } else if (connectivityResult == ConnectivityResult.wifi) {
         networkStatus = 'WiFi';
-      });
-    } else if (connectivityResult == ConnectivityResult.none) {
-      setState(() {
+      } else if (connectivityResult == ConnectivityResult.none) {
         networkStatus = 'No Network';
-      });
+      } else {
+        networkStatus = 'WiFi';
+      }
+    });
+
+    if (_isNetworkStatusEnabled) {
+      _showNetworkStatusDialog();
     }
   }
 
   Future<void> getUserImage() async {
-    var userDoc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .get();
-    if (userDoc.exists) {
-      setState(() {
-        imageUrl = userDoc['photoURL'];
-      });
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final filePath = '${directory.path}/${user!.uid}.jpg';
+      final localImage = File(filePath);
+      if (localImage.existsSync()) {
+        setState(() {
+          _localImageFile = localImage;
+        });
+      }
+    } catch (e) {
+      print('Error getting user image: $e');
     }
   }
 
@@ -73,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final XFile? selectedImage =
         await _picker.pickImage(source: ImageSource.gallery);
     if (selectedImage != null) {
-      _uploadImage(File(selectedImage.path));
+      await _saveImageLocally(File(selectedImage.path));
     }
   }
 
@@ -81,27 +95,92 @@ class _ProfilePageState extends State<ProfilePage> {
     final XFile? takenImage =
         await _picker.pickImage(source: ImageSource.camera);
     if (takenImage != null) {
-      _uploadImage(File(takenImage.path));
+      await _saveImageLocally(File(takenImage.path));
     }
   }
 
-  Future<void> _uploadImage(File image) async {
+  Future<void> _saveImageLocally(File image) async {
     try {
-      final storageRef = FirebaseStorage.instance
-          .ref()
-          .child('user_images')
-          .child(user!.uid + '.jpg');
-      await storageRef.putFile(image);
-      final downloadUrl = await storageRef.getDownloadURL();
-      await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
-        'photoURL': downloadUrl,
-      }, SetOptions(merge: true));
+      final directory = await getApplicationDocumentsDirectory();
+      final filePath = '${directory.path}/${user!.uid}.jpg';
+      final localImage = await image.copy(filePath);
       setState(() {
-        imageUrl = downloadUrl;
+        _localImageFile = localImage;
       });
     } catch (e) {
-      print('Error uploading image: $e');
+      print('Error saving image locally: $e');
     }
+  }
+
+  Future<void> _fetchLocation() async {
+    Location location = Location();
+
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _locationData = await location.getLocation();
+
+    setState(() {
+      _isLocationServiceEnabled = true;
+    });
+
+    _showLocationDialog(_locationData!.latitude, _locationData!.longitude);
+  }
+
+  void _showLocationDialog(double? latitude, double? longitude) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Current Location'),
+          content: Text('Latitude: $latitude\nLongitude: $longitude'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showNetworkStatusDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Network Status'),
+          content: Text('Current Network Status: Connected to WiFi'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -119,10 +198,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: imageUrl == null
-                        ? NetworkImage(user?.photoURL ??
-                            'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png')
-                        : NetworkImage(imageUrl!) as ImageProvider,
+                    backgroundImage: _localImageFile != null
+                        ? FileImage(_localImageFile!)
+                        : NetworkImage(user?.photoURL ??
+                                'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png')
+                            as ImageProvider,
                   ),
                   Positioned(
                     bottom: 0,
@@ -139,7 +219,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             SizedBox(height: 16),
             Text(
-              //use the email of the user and get string before @
               user?.email?.split('@').first ?? 'No Name',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
@@ -165,19 +244,49 @@ class _ProfilePageState extends State<ProfilePage> {
               title: Text('Notifications'),
             ),
             ListTile(
-              leading: Icon(Icons.help),
-              title: Text('FAQs'),
+              leading: Icon(Icons.location_on),
+              title: Text('Fetch Location'),
+              trailing: Switch(
+                value: _isLocationServiceEnabled,
+                onChanged: (value) {
+                  if (value) {
+                    _fetchLocation();
+                  } else {
+                    setState(() {
+                      _isLocationServiceEnabled = false;
+                    });
+                  }
+                },
+              ),
             ),
+            // Add a toggle to fetch network status popup
             ListTile(
-              leading: Icon(Icons.share),
-              title: Text('Share'),
+              leading: Icon(Icons.network_check),
+              title: Text('Network Status'),
+              trailing: Switch(
+                value: _isNetworkStatusEnabled,
+                onChanged: (value) {
+                  setState(() {
+                    _isNetworkStatusEnabled = value;
+                    if (value) {
+                      getNetworkStatus();
+                    }
+                  });
+                },
+              ),
             ),
+
             ListTile(
               leading: Icon(Icons.logout),
               title: Text('Log Out'),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacementNamed('/login');
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ),
+                );
               },
             ),
           ],
